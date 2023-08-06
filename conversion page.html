@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body{
+background-image: url(image33.png);
+background-size: 100% 100%;
+background-attachment: fixed;
+}
+.B{
+margin-top: 260px;
+margin-left: 842px;
+border-radius: 27px;
+padding: 10px;
+}
+#result{
+color:#FFFFFF;
+margin-top: 30px;
+margin-left: 870px;
+}
+  </style>
+  <meta charset="UTF-8">
+  <title>Speech Recognition</title>
+</head>
+<body>
+  <button class="B" onclick="startRecognition()">Start Recognition</button>
+  <p id="result"></p>
+  <script>
+    function startRecognition() {
+      const recognition = new webkitSpeechRecognition();
+      recognition.onresult = function(event) {
+        const result = event.results[0][0].transcript;
+        document.getElementById('result').textContent = result;
+        sendToServer(result);
+      };
+      recognition.start();
+    }
+
+    function sendToServer(text) {
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', 'process.php');
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      xhr.send('text=' + encodeURIComponent(text));
+    }
+  </script>
+</body>
+</html>
