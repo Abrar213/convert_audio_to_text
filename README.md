@@ -8,3 +8,9 @@ In this work, the audio was converted into text and the text was stored in the d
 
 
 ![image2](test2.png)
+
+
+![image3](test3.png)
+
+
+![image4](test4.png)
